@@ -52,7 +52,7 @@ class DataVisual:
         pyplot.xticks(range(0, 34, 1))
         pyplot.yticks(range(0, 220, 10))
 
-        pyplot.bar(red_balls, red_statistics)
+        pyplot.bar(red_balls, red_statistics,facecolor='#f72422', edgecolor='white')
         for x, y in zip(red_balls, red_statistics):
             pyplot.text(x, y + 0.5, y, ha='center')
         pyplot.grid(axis="y")
