@@ -49,7 +49,7 @@ class DataVisual:
         pyplot.title(r"Red Balls Statistics")
         pyplot.xlim((0, 34))
         pyplot.ylim((0, 220))
-        pyplot.xticks(range(0, 33, 1))
+        pyplot.xticks(range(0, 34, 1))
         pyplot.yticks(range(0, 220, 10))
 
         pyplot.bar(red_balls, red_statistics)
