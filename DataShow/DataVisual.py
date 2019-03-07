@@ -26,7 +26,7 @@ def blue_statistics_visual():
         show_ball.append(int(ball))
 
     pyplot.subplot(2, 1, 1)
-    pyplot.xlabel(r"Blue Balls")
+    # pyplot.xlabel(r"Blue Balls")
     pyplot.ylabel(r"Blue Balls Count")
     pyplot.title(r"Blue Balls Statistics, Count:{0}".format(sum(blue_statistics)))
     pyplot.xlim((0, 17))
@@ -55,7 +55,7 @@ def blue_statistics_visual():
     pyplot.subplot(2, 1, 2)
     pyplot.xlabel(r"Blue Balls")
     pyplot.ylabel(r"Blue Balls Count")
-    pyplot.title(r"Blue Balls Statistics, Count:{0}".format(sum(blue_statistics_sort)))
+    # pyplot.title(r"Blue Balls Statistics, Count:{0}".format(sum(blue_statistics_sort)))
     pyplot.xlim((-1, 16))
     pyplot.ylim((0, 100))
     pyplot.xticks(range(0, 17, 1))
