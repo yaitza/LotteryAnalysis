@@ -21,7 +21,7 @@ class DataVisual:
         print("init success!")
 
     def blue_statistics_visual(self):
-        pyplot.figure(figsize=(8, 6))
+        pyplot.figure(figsize=(4, 3))
         blue_ball, blue_statistics = self.sql.get_blue_statistics()
         show_ball = []
         for ball in blue_ball:
