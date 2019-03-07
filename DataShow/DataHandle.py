@@ -20,12 +20,15 @@ def red_statistics():
     red_balls_summary = []
     for balls in red_balls:
         for ball in balls.split(','):
-            red_balls_summary.append(ball)
+            red_balls_summary.append(int(ball))
     red_balls_int = []
     red_balls_statistics = []
     for key, group in itertools.groupby(sorted(red_balls_summary)):
         red_balls_int.append(int(key))
         red_balls_statistics.append(list(group).__len__())
+
+    for i in range(1, 34):
+        print(red_balls_summary.count(i))
     return red_balls_int, red_balls_statistics
 
 

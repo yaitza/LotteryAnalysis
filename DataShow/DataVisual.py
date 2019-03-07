@@ -24,6 +24,8 @@ def blue_statistics_visual():
     show_ball = []
     for ball in blue_ball:
         show_ball.append(int(ball))
+
+    pyplot.subplot(2, 1, 1)
     pyplot.xlabel(r"Blue Balls")
     pyplot.ylabel(r"Blue Balls Count")
     pyplot.title(r"Blue Balls Statistics, Count:{0}".format(sum(blue_statistics)))
@@ -36,7 +38,34 @@ def blue_statistics_visual():
     for x, y in zip(show_ball, blue_statistics):
         pyplot.text(x, y+0.5, y, ha='center')
     pyplot.grid(axis="y")
+    # pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=200)
+    # pyplot.show()
+
+    blue_balls_temp = {}
+    for key, value in zip(blue_ball, blue_statistics):
+        blue_balls_temp[key] = value
+    blue_balls_sort = []
+    blue_statistics_sort = []
+    for key, value in sorted(blue_balls_temp.items(), key=lambda item: item[1], reverse=True):
+        blue_balls_sort.append(key)
+        blue_statistics_sort.append(value)
+    print(blue_balls_sort)
+    print(blue_statistics_sort)
+
+    pyplot.subplot(2, 1, 2)
+    pyplot.xlabel(r"Blue Balls")
+    pyplot.ylabel(r"Blue Balls Count")
+    pyplot.title(r"Blue Balls Statistics, Count:{0}".format(sum(blue_statistics_sort)))
+    pyplot.xlim((-1, 16))
+    pyplot.ylim((0, 100))
+    pyplot.xticks(range(0, 17, 1))
+    pyplot.yticks(range(0, 100, 10))
+    pyplot.bar(blue_balls_sort, blue_statistics_sort)
+    for x, y in zip(blue_balls_sort, blue_statistics_sort):
+        pyplot.text(x, y+0.5, y, ha='center')
+    pyplot.grid(axis="y")
     pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=200)
+
     pyplot.show()
 
 
@@ -80,4 +109,4 @@ def blue_visual():
 if __name__ == "__main__":
     # blue_visual()
     blue_statistics_visual()
-    red_statistics_visual()
+    # red_statistics_visual()
