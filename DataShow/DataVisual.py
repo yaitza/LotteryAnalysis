@@ -51,7 +51,7 @@ def blue_statistics_visual():
     for key, value in sorted(blue_balls_temp.items(), key=lambda item: item[1], reverse=True):
         blue_balls_sort.append(key)
         blue_statistics_sort.append(value)
- 
+
     pyplot.subplot(2, 1, 2)
     pyplot.xlabel(r"Blue Balls")
     pyplot.ylabel(r"Blue Balls Count")
@@ -81,7 +81,7 @@ def red_statistics_visual():
     pyplot.xlim((0, 34))
     pyplot.ylim((0, large_count + 20))
     pyplot.xticks(range(0, 34, 1))
-    pyplot.yticks(range(0, large_count + 20, 50))
+    pyplot.yticks(range(0, large_count + 20, 20))
 
     pyplot.bar(red_balls, red_statistics, facecolor='#f72422', edgecolor='white')
     for x, y in zip(red_balls, red_statistics):
@@ -106,7 +106,7 @@ def red_statistics_visual():
     pyplot.xlim((-1, 33))
     pyplot.ylim((0, large_count + 20))
     pyplot.xticks(range(0, 34, 1))
-    pyplot.yticks(range(0, large_count + 20, 50))
+    pyplot.yticks(range(0, large_count + 20, 20))
     pyplot.bar(red_ball_sort, red_statistics_sort, facecolor='#f72422', edgecolor='white')
     for x, y in zip(red_ball_sort, red_statistics_sort):
         pyplot.text(x, y + 0.5, y, ha='center', fontsize=7)
