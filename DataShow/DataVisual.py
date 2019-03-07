@@ -25,19 +25,21 @@ def blue_statistics_visual():
     for ball in blue_ball:
         show_ball.append(int(ball))
 
+    large_count = max(blue_statistics)
+
     pyplot.subplot(2, 1, 1)
     # pyplot.xlabel(r"Blue Balls")
     pyplot.ylabel(r"Blue Balls Count")
     pyplot.title(r"Blue Balls Statistics, Count:{0}".format(sum(blue_statistics)))
     pyplot.xlim((0, 17))
-    pyplot.ylim((0, 100))
+    pyplot.ylim((0, large_count + 10))
     pyplot.xticks(range(0, 17, 1))
-    pyplot.yticks(range(0, 100, 10))
+    pyplot.yticks(range(0, large_count + 10, 10))
 
     pyplot.bar(show_ball, blue_statistics)
     for x, y in zip(show_ball, blue_statistics):
         pyplot.text(x, y+0.5, y, ha='center')
-    pyplot.grid(axis="y")
+    # pyplot.grid(axis="y")
     # pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=200)
     # pyplot.show()
 
@@ -49,21 +51,19 @@ def blue_statistics_visual():
     for key, value in sorted(blue_balls_temp.items(), key=lambda item: item[1], reverse=True):
         blue_balls_sort.append(key)
         blue_statistics_sort.append(value)
-    print(blue_balls_sort)
-    print(blue_statistics_sort)
-
+ 
     pyplot.subplot(2, 1, 2)
     pyplot.xlabel(r"Blue Balls")
     pyplot.ylabel(r"Blue Balls Count")
     # pyplot.title(r"Blue Balls Statistics, Count:{0}".format(sum(blue_statistics_sort)))
     pyplot.xlim((-1, 16))
-    pyplot.ylim((0, 100))
+    pyplot.ylim((0, large_count + 10))
     pyplot.xticks(range(0, 17, 1))
-    pyplot.yticks(range(0, 100, 10))
+    pyplot.yticks(range(0, large_count + 10, 10))
     pyplot.bar(blue_balls_sort, blue_statistics_sort)
     for x, y in zip(blue_balls_sort, blue_statistics_sort):
-        pyplot.text(x, y+0.5, y, ha='center')
-    pyplot.grid(axis="y")
+        pyplot.text(x, y + 0.5, y, ha='center')
+    # pyplot.grid(axis="y")
     pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=200)
 
     pyplot.show()
@@ -71,19 +71,46 @@ def blue_statistics_visual():
 
 def red_statistics_visual():
     red_balls, red_statistics = DataHandle.red_statistics()
-    pyplot.figure(figsize=(11, 7))
-    pyplot.xlabel(r"red Balls")
+    large_count = max(red_statistics)
+
+    pyplot.figure(figsize=(10, 7))
+    pyplot.subplot(2, 1, 1)
+    # pyplot.xlabel(r"red Balls")
     pyplot.ylabel(r"Red Balls Count")
     pyplot.title(r"Red Balls Statistics, Count:{0}".format(sum(red_statistics)))
     pyplot.xlim((0, 34))
-    pyplot.ylim((0, 220))
+    pyplot.ylim((0, large_count + 20))
     pyplot.xticks(range(0, 34, 1))
-    pyplot.yticks(range(0, 220, 10))
+    pyplot.yticks(range(0, large_count + 20, 50))
 
     pyplot.bar(red_balls, red_statistics, facecolor='#f72422', edgecolor='white')
     for x, y in zip(red_balls, red_statistics):
-        pyplot.text(x, y + 0.5, y, ha='center')
-    pyplot.grid(axis="y")
+        pyplot.text(x, y + 0.5, y, ha='center', fontsize=7)
+    # pyplot.grid(axis="y")
+    # pyplot.savefig(r"{0}\..\image\RedBallsStatistics.png".format(os.getcwd()), dpi=300)
+    # pyplot.show()
+
+    red_ball_sort = []
+    red_statistics_sort = []
+    red_balls_temp = {}
+    for key, value in zip(red_balls, red_statistics):
+        red_balls_temp[str(key)] = value
+    for key, value in sorted(red_balls_temp.items(), key=lambda item: item[1], reverse=True):
+        red_ball_sort.append(str(key))
+        red_statistics_sort.append(value)
+
+    pyplot.subplot(2, 1, 2)
+    pyplot.xlabel(r"red Balls")
+    pyplot.ylabel(r"Red Balls Count")
+    # pyplot.title(r"Red Balls Statistics, Count:{0}".format(sum(red_statistics)))
+    pyplot.xlim((-1, 33))
+    pyplot.ylim((0, large_count + 20))
+    pyplot.xticks(range(0, 34, 1))
+    pyplot.yticks(range(0, large_count + 20, 50))
+    pyplot.bar(red_ball_sort, red_statistics_sort, facecolor='#f72422', edgecolor='white')
+    for x, y in zip(red_ball_sort, red_statistics_sort):
+        pyplot.text(x, y + 0.5, y, ha='center', fontsize=7)
+    # pyplot.grid(axis="y")
     pyplot.savefig(r"{0}\..\image\RedBallsStatistics.png".format(os.getcwd()), dpi=300)
     pyplot.show()
 
@@ -109,4 +136,4 @@ def blue_visual():
 if __name__ == "__main__":
     # blue_visual()
     blue_statistics_visual()
-    # red_statistics_visual()
+    red_statistics_visual()

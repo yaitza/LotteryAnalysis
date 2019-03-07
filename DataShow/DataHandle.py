@@ -27,8 +27,8 @@ def red_statistics():
         red_balls_int.append(int(key))
         red_balls_statistics.append(list(group).__len__())
 
-    for i in range(1, 34):
-        print(red_balls_summary.count(i))
+    # for i in range(1, 34):
+    #     print(red_balls_summary.count(i))
     return red_balls_int, red_balls_statistics
 
 
