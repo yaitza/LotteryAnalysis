@@ -38,7 +38,7 @@ class DataVisual:
         for x, y in zip(show_ball, blue_statistics):
             pyplot.text(x, y+0.5, y, ha='center')
         pyplot.grid(axis="y")
-        pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=300)
+        pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=200)
         pyplot.show()
 
     def red_statistics_visual(self):
@@ -81,5 +81,5 @@ class DataVisual:
 if __name__ == "__main__":
     dv = DataVisual()
     # dv.blue_visual()
-    # dv.blue_statistics_visual()
+    dv.blue_statistics_visual()
     dv.red_statistics_visual()
