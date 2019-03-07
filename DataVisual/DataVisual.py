@@ -21,7 +21,7 @@ class DataVisual:
         print("init success!")
 
     def blue_statistics_visual(self):
-        pyplot.figure('bar figure')
+        pyplot.figure(figsize=(8, 6))
         blue_ball, blue_statistics = self.sql.get_blue_statistics()
         show_ball = []
         for ball in blue_ball:
@@ -38,7 +38,7 @@ class DataVisual:
         for x, y in zip(show_ball, blue_statistics):
             pyplot.text(x, y+0.5, y, ha='center')
         pyplot.grid(axis="y")
-        pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()))
+        pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=300)
         pyplot.show()
 
 
