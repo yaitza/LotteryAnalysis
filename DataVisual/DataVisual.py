@@ -26,7 +26,6 @@ class DataVisual:
         show_ball = []
         for ball in blue_ball:
             show_ball.append(int(ball))
-        # pyplot.figure(figsize=(16, 60), dpi=80)
         pyplot.xlabel(r"Blue Balls")
         pyplot.ylabel(r"Blue Balls Count")
         pyplot.title(r"Blue Balls Statistics")
@@ -39,7 +38,7 @@ class DataVisual:
         for x, y in zip(show_ball, blue_statistics):
             pyplot.text(x, y+0.5, y, ha='center')
         pyplot.grid(axis="y")
-        pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=300)
+        pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=200)
         pyplot.show()
 
 
