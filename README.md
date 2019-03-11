@@ -7,3 +7,7 @@
 ### 红球号码出现次数统计图分布  
 
 ![Red Balls Statistics](./image/RedBallsStatistics.png)  
+
+### 红篮球代码求和出现次数统计图分布
+
+![BallsSumCountStatistics](./image/BallsSumCount.png)

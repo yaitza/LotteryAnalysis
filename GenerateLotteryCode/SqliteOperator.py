@@ -71,6 +71,7 @@ class SqliteOperator:
 
 
 if __name__ == "__main__":
+    print(time.strftime("%Y-%m-%d", time.localtime()))
     response_lottery = requests_lottery("2013-01-01", time.strftime("%Y-%m-%d", time.localtime()))
 
     so = SqliteOperator()

@@ -70,5 +70,5 @@ if __name__ == "__main__":
     #
     # print(response.text)
 
-    get_lottery_results("2018-01-01", "2019-03-06")
+    requests_lottery("2018-01-01", "2019-03-11")
 
