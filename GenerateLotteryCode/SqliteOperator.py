@@ -13,6 +13,7 @@ __date__ = "2019-02-25 16:52"
 
 import os
 import sqlite3
+import time
 from GenerateLotteryCode.ObtainOriginalData import requests_lottery
 
 
@@ -70,7 +71,7 @@ class SqliteOperator:
 
 
 if __name__ == "__main__":
-    response_lottery = requests_lottery("2013-01-01", "2019-03-07")
+    response_lottery = requests_lottery("2013-01-01", time.strftime("%Y-%m-%d", time.localtime()))
 
     so = SqliteOperator()
     so.insert_lottery_results(response_lottery)
