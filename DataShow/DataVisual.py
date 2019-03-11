@@ -136,7 +136,7 @@ def ball_sum_visual():
     ball_sum = [str(ball_item[0]) for ball_item in balls_sum_count]
     ball_count = [ball_item[1] for ball_item in balls_sum_count]
 
-    pyplot.figure(figsize=(30, 10))
+    pyplot.figure(figsize=(35, 10))
     # pyplot.figure(figsize=(30, 3))
     pyplot.subplot(2, 1, 1)
 
