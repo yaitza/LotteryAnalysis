@@ -46,21 +46,43 @@ def ball_sum_count():
         red_sum_array.append(red_sum)
         balls_sum_array.append(red_sum + int(blue_ball))
 
-    print(red_sum_array)
-    red_sum_count = sorted(Counter(red_sum_array).items(), key=lambda x: x[0], reverse=True)
-    print(red_sum_count)
-    # red_count_sum = sorted(Counter(red_sum_array).items(), key=lambda x: x[0], reverse=False)
-    # print(red_count_sum)
-    # print(sorted(Counter(balls_sum_array).items(), key=lambda x: x[1], reverse=True))
-    # balls_sum_count = sorted(Counter(balls_sum_array).items(), key=lambda x: x[0], reverse=True)
-    # red_sum = [str(red_item[0]) for red_item in red_sum_count]
-    # print(red_sum)
-    # red_count = [red_item[1] for red_item in red_sum_count]
-    # print(red_count)
+    red_sum_count = sorted(Counter(red_sum_array).items(), key=lambda x: x[1], reverse=True)
+    balls_sum_count = sorted(Counter(balls_sum_array).items(), key=lambda x: x[1], reverse=True)
+    red_sum = [str(red_item[0]) for red_item in red_sum_count]
+    red_count = [red_item[1] for red_item in red_sum_count]
+    ball_sum = [str(ball_item[0]) for ball_item in balls_sum_count]
+    ball_count = [ball_item[1] for ball_item in balls_sum_count]
+    return red_count, red_sum, ball_count, ball_sum
+
+
+def area_statistics():
+    so = SqliteOperator()
+    area_count = so.get_single_value("content")
+
+    area_dict = {}
+    for item in area_count:
+        print(item)
+        item.replace("。其中复式或胆拖投注为：", ",")
+
+        str_tmp ="其中复式或胆拖投注为"
+        if str_tmp in item:
+            item1 = item.split(str_tmp)
+        else:
+            for area in item.split(',')[0:-1]:
+                print("{} {} {}".format(area, area[-2:-1], area[0:-2]))
+                area_zone = area[0:-2]
+                area_int = int(area[-2:-1])
+
+                if area_zone in area_dict.keys():
+                    area_dict[area_zone] = area_dict[area_zone] + area_int
+                    continue
+                area_dict[area_zone] = int(area_int)
+        print(area_dict)
 
 
 if __name__ == "__main__":
     # print(red_statistics())
-    ball_sum_count()
+    # ball_sum_count()
+    area_statistics()
 
 
