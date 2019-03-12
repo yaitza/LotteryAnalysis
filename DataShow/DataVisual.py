@@ -15,8 +15,21 @@ from matplotlib import pyplot
 from GenerateLotteryCode.SqliteOperator import *
 from DataShow import DataHandle
 from pylab import *
+from PIL import Image, ImageFont, ImageDraw
 
 sql = SqliteOperator()
+
+def winners_of_lottery():
+    latest = sql.get_latest_lottery()
+    info = "期数：{0} 开奖时间：{1} 红球号码：{2} 蓝球号码：{3}".format(latest[0], latest[1], latest[3], latest[4])
+    im = Image.new("RGB", (550, 25), (255, 255, 255))
+    dr = ImageDraw.Draw(im)
+    font = ImageFont.truetype(os.path.join("fonts", r"{0}\..\Resources\simhei.ttf".format(os.getcwd())), 14)
+
+    dr.text((10, 5), info, font=font, fill="#000000")
+
+    im.show()
+    im.save(r"{0}\..\image\Winning.png".format(os.getcwd()))
 
 
 def blue_statistics_visual():
@@ -213,4 +226,5 @@ if __name__ == "__main__":
     # blue_statistics_visual()
     # red_statistics_visual()
     # ball_sum_visual()
-    area_statistics_visual()
+    # area_statistics_visual()
+    winners_of_lottery()

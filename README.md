@@ -1,5 +1,9 @@
 # LotteryAnalysis
 
+### 最近一次开奖结果
+
+![Winning](./image/Winning.png) 
+
 ### 各地区历次中奖统计
 
 ![Area Winning Count](./image/AreaWinningCount.png)  

@@ -25,7 +25,7 @@ class SqliteOperator:
 
     def insert_lottery_results(self, lottery_results):
         c = self.conn.cursor()
-        latest_lottery_date = self.get_latest_lottery()
+        latest_lottery_date = self.get_latest_lottery()[1]
         for lottery in lottery_results:
             insert_sql = "INSERT INTO lottery_summary(ID,lottery_date,week,redballs,blueballs,content,sales,poolmoney,prizegrades)" \
                          " VALUES (\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\")".format(
@@ -36,14 +36,23 @@ class SqliteOperator:
 
         self.conn.commit()
 
+    # def get_latest_date_lottery(self):
+    #     c = self.conn.cursor()
+    #     select_sql = "SELECT lottery_date FROM lottery_summary order BY lottery_date desc LIMIT 1"
+    #     cursor = c.execute(select_sql)
+    #     lottery_date = None
+    #     for row in cursor:
+    #         lottery_date = row[0]
+    #     return lottery_date
+
     def get_latest_lottery(self):
         c = self.conn.cursor()
-        select_sql = "SELECT lottery_date FROM lottery_summary order BY lottery_date desc LIMIT 1"
+        select_sql = "SELECT * FROM lottery_summary ORDER BY lottery_date DESC LIMIT 1"
         cursor = c.execute(select_sql)
-        lottery_date = None
+        lottery = []
         for row in cursor:
-            lottery_date = row[0]
-        return lottery_date
+            lottery.extend(list(row))
+        return lottery
 
     def get_single_value(self, item):
         c = self.conn.cursor()
@@ -76,7 +85,8 @@ if __name__ == "__main__":
 
     so = SqliteOperator()
     so.insert_lottery_results(response_lottery)
-    so.get_latest_lottery()
-    so.get_blue_statistics()
-    print(so.get_single_value('redballs'))
-    print(so.get_single_value('blueballs'))
+    print(so.get_latest_lottery())
+    # so.get_latest_date_lottery()
+    # so.get_blue_statistics()
+    # print(so.get_single_value('redballs'))
+    # print(so.get_single_value('blueballs'))
