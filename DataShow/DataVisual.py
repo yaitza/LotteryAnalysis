@@ -11,10 +11,10 @@ import os
 __author__ = "yaitza"
 __date__ = "2019-02-26 15:45"
 
-from collections import Counter
 from matplotlib import pyplot
 from GenerateLotteryCode.SqliteOperator import *
 from DataShow import DataHandle
+from pylab import *
 
 sql = SqliteOperator()
 
@@ -149,6 +149,47 @@ def ball_sum_visual():
     pyplot.show()
 
 
+def area_statistics_visual():
+    area_data = DataHandle.area_statistics()
+
+    pyplot.figure(figsize=(12, 10))
+    pyplot.subplot(2, 1, 1)
+    pyplot.xlabel(r"Area Count")
+    pyplot.ylabel(r"Area Zone")
+    pyplot.title(r"Area Winning Count")
+    pyplot.xlim((-1, area_data.__len__()))
+    pyplot.ylim((0, max(area_data.values()) + 50))
+    pyplot.xticks(range(0, area_data.__len__(), 1))
+    pyplot.yticks(range(0, max(area_data.values()) + 50, 50))
+    pyplot.grid(axis='y')
+    mpl.rcParams['font.sans-serif'] = ['SimHei']
+    pyplot.bar(area_data.keys(), area_data.values())
+    for x, y in zip(area_data.keys(), area_data.values()):
+        pyplot.text(x, y + 3, x, ha='center', fontsize=7)
+
+    area_data_sorted = sorted(area_data.items(), key=lambda x: x[1], reverse=True)
+    pyplot.subplot(2, 1, 2)
+    pyplot.xlabel(r"Area Count")
+    pyplot.ylabel(r"Area Zone")
+    pyplot.title(r"Area Winning Count")
+    pyplot.xlim((-1, area_data_sorted.__len__()))
+    pyplot.ylim((0, max(area_data.values()) + 50))
+    pyplot.xticks(range(0, area_data.__len__(), 1))
+    pyplot.yticks(range(0, max(area_data.values()) + 50, 50))
+    pyplot.grid(axis='y')
+    mpl.rcParams['font.sans-serif'] = ['SimHei']
+    pyplot.bar([x[0] for x in area_data_sorted], [x[1] for x in area_data_sorted])
+    for x, y in zip([x[0] for x in area_data_sorted], [x[1] for x in area_data_sorted]):
+        pyplot.text(x, y + 3, x, ha='center', fontsize=7)
+    pyplot.savefig(r"{0}\..\image\AreaWinningCount.png".format(os.getcwd()), dpi=300)
+    # pyplot.show()
+
+    area_data_pie = sorted(area_data.items(), key=lambda x: x[0], reverse=False)
+    pyplot.pie([x[1] for x in area_data_pie], labels=[x[0] for x in area_data_pie])
+    pyplot.savefig(r"{0}\..\image\AreaWinningCountPie.png".format(os.getcwd()), dpi=300)
+    # pyplot.show()
+
+
 def blue_visual():
     blue_ball = sql.get_single_value('blueballs')
     show_balls = []
@@ -171,4 +212,5 @@ if __name__ == "__main__":
     # blue_visual()
     # blue_statistics_visual()
     # red_statistics_visual()
-    ball_sum_visual()
+    # ball_sum_visual()
+    area_statistics_visual()

@@ -61,23 +61,29 @@ def area_statistics():
 
     area_dict = {}
     for item in area_count:
-        print(item)
-        item.replace("。其中复式或胆拖投注为：", ",")
-
-        str_tmp ="其中复式或胆拖投注为"
+        str_tmp = r"其中复式或胆拖投注为："
+        str_tem = r"其中复式投注为："
+        area_array = []
         if str_tmp in item:
-            item1 = item.split(str_tmp)
+            item_array = item.split(str_tmp)
+            area_array.extend(item_array[0].split(',')[0:-1])
+            area_array.extend((item_array[1][0:-1]).split(','))
+        elif str_tem in item:
+            item_array = item.split(str_tem)
+            area_array.extend(item_array[0].split(',')[0:-1])
+            area_array.extend((item_array[1][0:-1]).split(','))
         else:
-            for area in item.split(',')[0:-1]:
-                print("{} {} {}".format(area, area[-2:-1], area[0:-2]))
-                area_zone = area[0:-2]
-                area_int = int(area[-2:-1])
-
-                if area_zone in area_dict.keys():
-                    area_dict[area_zone] = area_dict[area_zone] + area_int
-                    continue
-                area_dict[area_zone] = int(area_int)
-        print(area_dict)
+            area_array.extend(item.split(',')[0:-1])
+        for area in area_array:
+            if "0注".__eq__(area): continue
+            area_data = [''.join(list(g)) for k, g in itertools.groupby(area, key=lambda x: x.isdigit())]
+            area_zone = area_data[0]
+            area_int = int(area_data[1])
+            if area_zone in area_dict.keys():
+                area_dict[area_zone] = area_dict[area_zone] + area_int
+                continue
+            area_dict[area_zone] = area_int
+    return area_dict
 
 
 if __name__ == "__main__":
