@@ -1,6 +1,6 @@
 # LotteryAnalysis
 
-### 历次各地区中奖统计
+### 各地区历次中奖统计
 
 ![Area Winning Count](./image/AreaWinningCount.png)  
 
