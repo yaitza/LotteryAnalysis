@@ -65,8 +65,7 @@ def blue_statistics_visual():
         pyplot.text(x, y + 0.5, y, ha='center')
     # pyplot.grid(axis="y")
     pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=200)
-
-    pyplot.show()
+    # pyplot.show()
 
 
 def red_statistics_visual():
@@ -112,7 +111,7 @@ def red_statistics_visual():
         pyplot.text(x, y + 0.5, y, ha='center', fontsize=7)
     # pyplot.grid(axis="y")
     pyplot.savefig(r"{0}\..\image\RedBallsStatistics.png".format(os.getcwd()), dpi=300)
-    pyplot.show()
+    # pyplot.show()
 
 
 def ball_sum_visual():
@@ -146,13 +145,13 @@ def ball_sum_visual():
     for x, y in zip(ball_sum, ball_count):
         pyplot.text(x, int(y) + 0.5, x, ha='center')
     pyplot.savefig(r"{0}\..\image\BallsSumCount.png".format(os.getcwd()), dpi=300)
-    pyplot.show()
+    # pyplot.show()
 
 
 def area_statistics_visual():
     area_data = DataHandle.area_statistics()
 
-    pyplot.figure(figsize=(12, 10))
+    pyplot.figure(1, figsize=(12, 10))
     pyplot.subplot(2, 1, 1)
     pyplot.xlabel(r"Area Count")
     pyplot.ylabel(r"Area Zone")
@@ -184,6 +183,7 @@ def area_statistics_visual():
     pyplot.savefig(r"{0}\..\image\AreaWinningCount.png".format(os.getcwd()), dpi=300)
     # pyplot.show()
 
+    pyplot.figure(2)
     area_data_pie = sorted(area_data.items(), key=lambda x: x[0], reverse=False)
     pyplot.pie([x[1] for x in area_data_pie], labels=[x[0] for x in area_data_pie])
     pyplot.savefig(r"{0}\..\image\AreaWinningCountPie.png".format(os.getcwd()), dpi=300)
