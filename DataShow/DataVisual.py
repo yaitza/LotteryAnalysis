@@ -164,7 +164,7 @@ def ball_sum_visual():
 def area_statistics_visual():
     area_data = DataHandle.area_statistics()
 
-    pyplot.figure(1, figsize=(12, 10))
+    pyplot.figure(figsize=(12, 10))
     pyplot.subplot(2, 1, 1)
     pyplot.xlabel(r"中奖地区")
     pyplot.ylabel(r"中奖次数")
@@ -195,8 +195,8 @@ def area_statistics_visual():
         pyplot.text(x, y + 3, x, ha='center', fontsize=7)
     pyplot.savefig(r"{0}\..\image\AreaWinningCount.png".format(os.getcwd()), dpi=300)
     # pyplot.show()
-
-    pyplot.figure(2)
+    pyplot.clf()
+    pyplot.figure()
     area_data_pie = sorted(area_data.items(), key=lambda x: x[0], reverse=False)
     pyplot.pie([x[1] for x in area_data_pie], labels=[x[0] for x in area_data_pie])
     pyplot.savefig(r"{0}\..\image\AreaWinningCountPie.png".format(os.getcwd()), dpi=300)
