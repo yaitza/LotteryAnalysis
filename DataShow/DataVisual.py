@@ -28,7 +28,7 @@ def winners_of_lottery():
 
     dr.text((10, 5), info, font=font, fill="#000000")
 
-    im.show()
+    # im.show()
     im.save(r"{0}\..\image\Winning.png".format(os.getcwd()))
 
 
@@ -223,8 +223,8 @@ def blue_visual():
 
 if __name__ == "__main__":
     # blue_visual()
-    # blue_statistics_visual()
-    # red_statistics_visual()
-    # ball_sum_visual()
-    # area_statistics_visual()
+    blue_statistics_visual()
+    red_statistics_visual()
+    ball_sum_visual()
+    area_statistics_visual()
     winners_of_lottery()
