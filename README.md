@@ -4,6 +4,10 @@
 
 ![Winning](./image/Winning.png) 
 
+### 统计金额曲线图
+
+![Sales Money](./image/SalesMoney.png) 
+
 ### 各地区历次中奖统计
 
 ![Area Winning Count](./image/AreaWinningCount.png)  

@@ -6,11 +6,12 @@
 #
 # My Code hope to usefull for you.
 # ===================================================================
-import os
+
 
 __author__ = "yaitza"
 __date__ = "2019-02-26 15:45"
 
+import json
 from matplotlib import pyplot
 from GenerateLotteryCode.SqliteOperator import *
 from DataShow import DataHandle
@@ -203,6 +204,36 @@ def area_statistics_visual():
     # pyplot.show()
 
 
+def sales_money_visual():
+    sales_money = sql.get_single_value("sales")
+    pool_sales_money = sql.get_single_value("poolmoney")
+    bonus = sql.get_single_value("prizegrades")
+
+    prize_money = []
+    for item in bonus:
+        print(item)
+        print(item.strip('[]').split(','))
+        for prize in item.strip('[]').split(','):
+            print(prize.strip('{}'))
+            # print(dict(prize.strip(' ')))
+        break
+
+    # print(sales_money)
+    # print(pool_sales_money)
+    pyplot.figure(figsize=(12, 6))
+    pyplot.xlabel("期数")
+    pyplot.ylabel("金额")
+    pyplot.title("期数销售金额与奖池金额曲线图")
+    mpl.rcParams['font.sans-serif'] = ['SimHei']
+    pyplot.plot(range(0, sales_money.__len__()), sales_money, color="blue",
+                linewidth=1, linestyle="-", label="销售金额")
+    pyplot.plot(range(0, pool_sales_money.__len__()), pool_sales_money, color="red",
+                linewidth=1, linestyle="-", label="奖池金额")
+    legend(loc='lower left')
+    pyplot.savefig(r"{0}\..\image\SalesMoney.png".format(os.getcwd()), dpi=300)
+    # pyplot.show()
+
+
 def blue_visual():
     blue_ball = sql.get_single_value('blueballs')
     show_balls = []
@@ -222,9 +253,9 @@ def blue_visual():
 
 
 if __name__ == "__main__":
-    # blue_visual()
-    blue_statistics_visual()
-    red_statistics_visual()
-    ball_sum_visual()
-    area_statistics_visual()
-    winners_of_lottery()
+    sales_money_visual()
+    # blue_statistics_visual()
+    # red_statistics_visual()
+    # ball_sum_visual()
+    # area_statistics_visual()
+    # winners_of_lottery()
