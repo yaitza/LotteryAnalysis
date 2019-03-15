@@ -235,7 +235,7 @@ def sales_money_visual():
                 linewidth=1, linestyle="-", label="销售金额")
     pyplot.plot(range(0, pool_sales_money.__len__()), pool_sales_money, color="red",
                 linewidth=1, linestyle="-", label="奖池金额")
-    legend(loc='lower left')
+    legend(loc='upper left')
     pyplot.savefig(r"{0}\..\image\SalesMoney.png".format(os.getcwd()), dpi=300)
     # pyplot.show()
 
