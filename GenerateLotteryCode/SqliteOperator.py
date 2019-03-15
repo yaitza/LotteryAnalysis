@@ -56,7 +56,7 @@ class SqliteOperator:
 
     def get_single_value(self, item):
         c = self.conn.cursor()
-        select_sql = "SELECT {0} FROM lottery_summary".format(item)
+        select_sql = "SELECT {0} FROM lottery_summary ORDER BY ID ASC".format(item)
         cursor = c.execute(select_sql)
         red_balls = []
         for row in cursor:

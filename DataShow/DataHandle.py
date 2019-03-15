@@ -86,6 +86,26 @@ def area_statistics():
     return area_dict
 
 
+def handle_prize():
+    so = SqliteOperator()
+    bonus = so.get_single_value("prizegrades")
+
+    prize_money = []
+    for item in bonus:
+        prize_array = []
+        prize_dict = {}
+        i_flag = 0
+        for prize in item.strip('[]').split(','):
+            prize_summary = prize.strip(' {} ').split(': ')
+            prize_dict[prize_summary[0].strip('\'')] = prize_summary[1].strip('\'')
+            i_flag = i_flag + 1
+            if i_flag % 3 == 0:
+                prize_array.append(prize_dict)
+                prize_dict = {}
+        prize_money.append(prize_array)
+    return prize_money
+
+
 if __name__ == "__main__":
     # print(red_statistics())
     # ball_sum_count()

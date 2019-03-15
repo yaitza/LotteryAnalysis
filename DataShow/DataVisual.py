@@ -211,12 +211,18 @@ def sales_money_visual():
 
     prize_money = []
     for item in bonus:
-        print(item)
-        print(item.strip('[]').split(','))
+        prize_array = []
+        prize_dict = {}
+        i_flag = 0
         for prize in item.strip('[]').split(','):
-            print(prize.strip('{}'))
-            # print(dict(prize.strip(' ')))
-        break
+            prize_summary = prize.strip(' {} ').split(': ')
+            prize_dict[prize_summary[0].strip('\'')] = prize_summary[1].strip('\'')
+            i_flag = i_flag + 1
+            if i_flag % 3 == 0:
+                prize_array.append(prize_dict)
+                prize_dict = {}
+        prize_money.append(prize_array)
+    print(prize_money)
 
     # print(sales_money)
     # print(pool_sales_money)
@@ -254,8 +260,8 @@ def blue_visual():
 
 if __name__ == "__main__":
     sales_money_visual()
-    # blue_statistics_visual()
-    # red_statistics_visual()
-    # ball_sum_visual()
-    # area_statistics_visual()
-    # winners_of_lottery()
+    blue_statistics_visual()
+    red_statistics_visual()
+    ball_sum_visual()
+    area_statistics_visual()
+    winners_of_lottery()
