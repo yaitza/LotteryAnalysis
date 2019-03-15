@@ -90,25 +90,37 @@ def handle_prize():
     so = SqliteOperator()
     bonus = so.get_single_value("prizegrades")
 
+    prize_summary = []
     prize_money = []
     for item in bonus:
         prize_array = []
         prize_dict = {}
         i_flag = 0
         for prize in item.strip('[]').split(','):
-            prize_summary = prize.strip(' {} ').split(': ')
-            prize_dict[prize_summary[0].strip('\'')] = prize_summary[1].strip('\'')
+            prize_temp = prize.strip(' {} ').split(': ')
+            prize_dict[prize_temp[0].strip('\'')] = prize_temp[1].strip('\'')
             i_flag = i_flag + 1
             if i_flag % 3 == 0:
                 prize_array.append(prize_dict)
                 prize_dict = {}
-        prize_money.append(prize_array)
-    return prize_money
+        prize_summary.append(prize_array)
+
+        sum_bonus = 0
+        for bonus in prize_array:
+            if '奖' in bonus['typemoney']:
+                sum_bonus = sum_bonus + int(bonus['typenum']) * int(bonus['typemoney'].split('（')[0])
+            elif ''.__eq__(bonus['typemoney']):
+                None
+            else:
+                sum_bonus = sum_bonus + int(bonus['typenum']) * int(bonus['typemoney'])
+        prize_money.append(sum_bonus)
+    return prize_money, prize_summary
 
 
 if __name__ == "__main__":
     # print(red_statistics())
     # ball_sum_count()
-    area_statistics()
+    # area_statistics()
+    handle_prize
 
 

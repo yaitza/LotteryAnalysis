@@ -8,6 +8,10 @@
 
 ![Sales Money](./image/SalesMoney.png) 
 
+### 销售金额与奖池金额曲线图
+
+![Difference Money](./image/DifferenceMoney.png)
+
 ### 各地区历次中奖统计
 
 ![Area Winning Count](./image/AreaWinningCount.png)  
