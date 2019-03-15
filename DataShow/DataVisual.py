@@ -232,20 +232,35 @@ def difference_prize_visual():
     pool_sales_money = sql.get_single_value("poolmoney")
 
     deference_prize = []
-    deference_mount = 0
+    deference = []
     for p, s in zip(prize_money, sales_money):
+        deference.append(float(p/s))
         deference_mount = s - p
         deference_prize.append(deference_mount)
 
-    pyplot.figure(figsize=(12, 6))
+    pyplot.figure(figsize=(20, 14))
+    pyplot.subplot(2, 1, 1)
     pyplot.xlabel("期数")
     pyplot.ylabel("金额")
     pyplot.title("销售与奖金差值累计金额与奖池金额曲线图")
     mpl.rcParams['font.sans-serif'] = ['SimHei']
+    pyplot.grid(axis='y')
+    pyplot.xlim((-1, deference_prize.__len__()))
     pyplot.plot(range(0, deference_prize.__len__()), deference_prize, color="blue",
                 linewidth=1, linestyle="-", label="销售与奖金差值累计金额")
     pyplot.plot(range(0, pool_sales_money.__len__()), pool_sales_money, color="red",
                 linewidth=1, linestyle="-", label="奖池金额")
+    legend(loc='upper left')
+
+    pyplot.subplot(2, 1, 2)
+    pyplot.xlabel("期数")
+    pyplot.ylabel("奖金金额与销售金额占比")
+    pyplot.title("奖金金额与销售金额占比曲线图")
+    mpl.rcParams['font.sans-serif'] = ['SimHei']
+    pyplot.grid(axis='y')
+    pyplot.xlim((-1, deference.__len__()))
+    pyplot.plot(range(0, deference.__len__()), deference, color="blue",
+                linewidth=1, linestyle="-", label="奖金金额与销售金额占比曲线图")
     legend(loc='upper left')
     pyplot.savefig(r"{0}\..\image\DifferenceMoney.png".format(os.getcwd()), dpi=300)
     # pyplot.show()
@@ -277,6 +292,3 @@ if __name__ == "__main__":
     ball_sum_visual()
     area_statistics_visual()
     winners_of_lottery()
-
-
-    # print(20*5250000+271*71485+2102*3000+86580*200+1412922*10+9831878*5)
