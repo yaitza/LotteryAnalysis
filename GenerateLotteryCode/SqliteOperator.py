@@ -14,13 +14,14 @@ __date__ = "2019-02-25 16:52"
 import os
 import sqlite3
 import time
-from GenerateLotteryCode.ObtainOriginalData import requests_lottery
+from ObtainOriginalData import requests_lottery
 
 
 class SqliteOperator:
 
     def __init__(self):
-        self.db_file = r"{0}\..\Resources\lottery.db".format(os.getcwd())
+        self.db_file = os.path.join(os.getcwd(), "..", "Resources", "lottery.db")
+        print(self.db_file)
         self.conn = sqlite3.connect(self.db_file)
 
     def insert_lottery_results(self, lottery_results):
@@ -80,7 +81,7 @@ class SqliteOperator:
 
 
 if __name__ == "__main__":
-    print(time.strftime("%Y-%m-%d", time.localtime()))
+    # print(time.strftime("%Y-%m-%d", time.localtime()))
     response_lottery = requests_lottery("2013-01-01", time.strftime("%Y-%m-%d", time.localtime()))
 
     so = SqliteOperator()
