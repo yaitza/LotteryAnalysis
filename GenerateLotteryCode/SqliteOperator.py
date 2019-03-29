@@ -20,7 +20,7 @@ from ObtainOriginalData import requests_lottery
 class SqliteOperator:
 
     def __init__(self):
-        self.db_file = os.path.join(os.getcwd(), "..", "Resources", "lottery.db")
+        self.db_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "Resources", "lottery.db")
         print(self.db_file)
         self.conn = sqlite3.connect(self.db_file)
 
