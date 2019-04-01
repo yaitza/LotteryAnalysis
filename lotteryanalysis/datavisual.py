@@ -21,6 +21,7 @@ sql = sqliteoperator()
 
 file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)))
 
+
 def winners_of_lottery():
     latest = sql.get_latest_lottery()
     info = "期数：{0} 开奖时间：{1} 红球号码：{2} 蓝球号码：{3}".format(latest[0], latest[1], latest[3], latest[4])
