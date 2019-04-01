@@ -12,11 +12,11 @@ __date__ = "2019-03-07 16:36"
 
 import itertools
 from collections import Counter
-from GenerateLotteryCode.SqliteOperator import SqliteOperator
+from generatelotterycode.sqliteoperator import sqliteoperator
 
 
 def red_statistics():
-    so = SqliteOperator()
+    so = sqliteoperator()
     red_balls = so.get_single_value("redballs")
     red_balls_summary = []
     for balls in red_balls:
@@ -32,7 +32,7 @@ def red_statistics():
 
 
 def ball_sum_count():
-    so = SqliteOperator()
+    so = sqliteoperator()
     blue_balls = so.get_single_value(r"blueballs")
     red_balls = so.get_single_value(r"redballs")
 
@@ -56,7 +56,7 @@ def ball_sum_count():
 
 
 def area_statistics():
-    so = SqliteOperator()
+    so = sqliteoperator()
     area_count = so.get_single_value("content")
 
     area_dict = {}
@@ -87,7 +87,7 @@ def area_statistics():
 
 
 def handle_prize():
-    so = SqliteOperator()
+    so = sqliteoperator()
     bonus = so.get_single_value("prizegrades")
 
     prize_summary = []

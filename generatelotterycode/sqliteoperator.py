@@ -14,10 +14,10 @@ __date__ = "2019-02-25 16:52"
 import os
 import sqlite3
 import time
-from ObtainOriginalData import requests_lottery
+from obtainoriginaldata import requests_lottery
 
 
-class SqliteOperator:
+class sqliteoperator:
 
     def __init__(self):
         self.db_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "Resources", "lottery.db")
@@ -83,7 +83,7 @@ class SqliteOperator:
 if __name__ == "__main__":
     response_lottery = requests_lottery("2013-01-01", time.strftime("%Y-%m-%d", time.localtime()))
 
-    so = SqliteOperator()
+    so = sqliteoperator()
     so.insert_lottery_results(response_lottery)
     print(so.get_latest_lottery())
     # so.get_latest_date_lottery()

@@ -10,7 +10,7 @@
 __author__ = "yaitza"
 __date__ = "2019-03-29 16:29"
 
-from DataShow.DataVisual import *
+from datashow.datavisual import *
 
 sales_money_visual()
 difference_prize_visual()

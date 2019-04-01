@@ -11,14 +11,13 @@
 __author__ = "yaitza"
 __date__ = "2019-02-26 15:45"
 
-import json
 from matplotlib import pyplot
-from GenerateLotteryCode.SqliteOperator import *
-from DataShow import DataHandle
+from generatelotterycode.sqliteoperator import *
+from datashow import datahandle
 from pylab import *
 from PIL import Image, ImageFont, ImageDraw
 
-sql = SqliteOperator()
+sql = sqliteoperator()
 
 def winners_of_lottery():
     latest = sql.get_latest_lottery()
@@ -83,7 +82,7 @@ def blue_statistics_visual():
 
 
 def red_statistics_visual():
-    red_balls, red_statistics = DataHandle.red_statistics()
+    red_balls, red_statistics = datahandle.red_statistics()
     large_count = max(red_statistics)
 
     pyplot.figure(figsize=(10, 7))
@@ -129,7 +128,7 @@ def red_statistics_visual():
 
 
 def ball_sum_visual():
-    red_count, red_sum, ball_count, ball_sum = DataHandle.ball_sum_count()
+    red_count, red_sum, ball_count, ball_sum = datahandle.ball_sum_count()
 
     pyplot.figure(figsize=(35, 10))
 
@@ -163,7 +162,7 @@ def ball_sum_visual():
 
 
 def area_statistics_visual():
-    area_data = DataHandle.area_statistics()
+    area_data = datahandle.area_statistics()
 
     pyplot.figure(figsize=(12, 10))
     pyplot.subplot(2, 1, 1)
@@ -208,7 +207,7 @@ def sales_money_visual():
     sales_money = sql.get_single_value("sales")
     pool_sales_money = sql.get_single_value("poolmoney")
 
-    prize_money, prize_summary = DataHandle.handle_prize()
+    prize_money, prize_summary = datahandle.handle_prize()
 
     pyplot.figure(figsize=(12, 6))
     pyplot.xlabel("期数")
@@ -227,7 +226,7 @@ def sales_money_visual():
 
 
 def difference_prize_visual():
-    prize_money, prize_summary = DataHandle.handle_prize()
+    prize_money, prize_summary = datahandle.handle_prize()
     sales_money = sql.get_single_value("sales")
     pool_sales_money = sql.get_single_value("poolmoney")
 
