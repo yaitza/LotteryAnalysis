@@ -7,29 +7,32 @@
 # My Code hope to usefull for you.
 # ===================================================================
 
-
 __author__ = "yaitza"
 __date__ = "2019-02-26 15:45"
 
 from matplotlib import pyplot
-from generatelotterycode.sqliteoperator import *
-from datashow import datahandle
+from sqliteoperator import sqliteoperator
+import datahandle
 from pylab import *
 from PIL import Image, ImageFont, ImageDraw
 
 sql = sqliteoperator()
+
+file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)))
 
 def winners_of_lottery():
     latest = sql.get_latest_lottery()
     info = "期数：{0} 开奖时间：{1} 红球号码：{2} 蓝球号码：{3}".format(latest[0], latest[1], latest[3], latest[4])
     im = Image.new("RGB", (550, 25), (255, 255, 255))
     dr = ImageDraw.Draw(im)
-    font = ImageFont.truetype(os.path.join("fonts", r"{0}\..\Resources\simhei.ttf".format(os.getcwd())), 14)
+    ttf_path = os.path.join(file_path, "..", "resources", "simhei.ttf")
+    font = ImageFont.truetype(ttf_path, 14)
 
     dr.text((10, 5), info, font=font, fill="#000000")
 
     # im.show()
-    im.save(r"{0}\..\image\Winning.png".format(os.getcwd()))
+    winning_path = os.path.join(file_path, "..", "docs", "image", "Winning.png")
+    im.save(winning_path)
 
 
 def blue_statistics_visual():
@@ -77,7 +80,8 @@ def blue_statistics_visual():
     for x, y in zip(blue_balls_sort, blue_statistics_sort):
         pyplot.text(x, y + 0.5, y, ha='center')
     # pyplot.grid(axis="y")
-    pyplot.savefig(r"{0}\..\image\BlueBallsStatistics.png".format(os.getcwd()), dpi=200)
+    blue_statistics_path = os.path.join(file_path, "..", "docs", "image", "BlueBallsStatistics.png")
+    pyplot.savefig(blue_statistics_path, dpi=200)
     # pyplot.show()
 
 
@@ -123,7 +127,8 @@ def red_statistics_visual():
     for x, y in zip(red_ball_sort, red_statistics_sort):
         pyplot.text(x, y + 0.5, y, ha='center', fontsize=7)
     # pyplot.grid(axis="y")
-    pyplot.savefig(r"{0}\..\image\RedBallsStatistics.png".format(os.getcwd()), dpi=300)
+    redballs_statistics_path = os.path.join(file_path, "..", "docs", "image", "RedBallsStatistics.png")
+    pyplot.savefig(redballs_statistics_path, dpi=300)
     # pyplot.show()
 
 
@@ -157,7 +162,8 @@ def ball_sum_visual():
     pyplot.bar(ball_sum, ball_count, facecolor='#251256', edgecolor='white')
     for x, y in zip(ball_sum, ball_count):
         pyplot.text(x, int(y) + 0.5, x, ha='center')
-    pyplot.savefig(r"{0}\..\image\BallsSumCount.png".format(os.getcwd()), dpi=300)
+    balls_sum_path = os.path.join(file_path, "..", "docs", "image", "BallsSumCount.png")
+    pyplot.savefig(balls_sum_path, dpi=300)
     # pyplot.show()
 
 
@@ -193,13 +199,15 @@ def area_statistics_visual():
     pyplot.bar([x[0] for x in area_data_sorted], [x[1] for x in area_data_sorted])
     for x, y in zip([x[0] for x in area_data_sorted], [x[1] for x in area_data_sorted]):
         pyplot.text(x, y + 3, x, ha='center', fontsize=7)
-    pyplot.savefig(r"{0}\..\image\AreaWinningCount.png".format(os.getcwd()), dpi=300)
+    area_path = os.path.join(file_path, "..", "docs", "image", "AreaWinningCount.png")
+    pyplot.savefig(area_path.format(os.getcwd()), dpi=300)
     # pyplot.show()
     pyplot.clf()
     pyplot.figure()
     area_data_pie = sorted(area_data.items(), key=lambda x: x[0], reverse=False)
     pyplot.pie([x[1] for x in area_data_pie], labels=[x[0] for x in area_data_pie])
-    pyplot.savefig(r"{0}\..\image\AreaWinningCountPie.png".format(os.getcwd()), dpi=300)
+    area_pie_path = os.path.join(file_path, "..", "docs", "image", "RedBallsStatistics.png")
+    pyplot.savefig(area_pie_path.format(os.getcwd()), dpi=300)
     # pyplot.show()
 
 
@@ -221,7 +229,8 @@ def sales_money_visual():
     pyplot.plot(range(0, pool_sales_money.__len__()), pool_sales_money, color="orange",
                 linewidth=1, linestyle="-", label="奖池金额")
     legend(loc='upper left')
-    pyplot.savefig(r"{0}\..\image\SalesMoney.png".format(os.getcwd()), dpi=300)
+    sales_money_path = os.path.join(file_path, "..", "docs", "image", "RedBallsStatistics.png")
+    pyplot.savefig(sales_money_path.format(os.getcwd()), dpi=300)
     # pyplot.show()
 
 
@@ -261,7 +270,8 @@ def difference_prize_visual():
     pyplot.plot(range(0, deference.__len__()), deference, color="blue",
                 linewidth=1, linestyle="-", label="奖金金额与销售金额占比曲线图")
     legend(loc='upper left')
-    pyplot.savefig(r"{0}\..\image\DifferenceMoney.png".format(os.getcwd()), dpi=300)
+    diff_path = os.path.join(file_path, "..", "docs", "image", "DifferenceMoney.png")
+    pyplot.savefig(diff_path, dpi=300)
     # pyplot.show()
 
 

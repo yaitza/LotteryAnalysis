@@ -12,7 +12,7 @@ __date__ = "2019-03-07 16:36"
 
 import itertools
 from collections import Counter
-from generatelotterycode.sqliteoperator import sqliteoperator
+from sqliteoperator import sqliteoperator
 
 
 def red_statistics():
