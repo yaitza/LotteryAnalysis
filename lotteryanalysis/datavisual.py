@@ -10,6 +10,7 @@
 __author__ = "yaitza"
 __date__ = "2019-02-26 15:45"
 
+import os
 from matplotlib import pyplot
 from sqliteoperator import sqliteoperator
 import datahandle
