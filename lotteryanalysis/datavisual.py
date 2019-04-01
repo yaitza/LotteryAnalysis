@@ -26,7 +26,7 @@ def winners_of_lottery():
     info = "期数：{0} 开奖时间：{1} 红球号码：{2} 蓝球号码：{3}".format(latest[0], latest[1], latest[3], latest[4])
     im = Image.new("RGB", (550, 25), (255, 255, 255))
     dr = ImageDraw.Draw(im)
-    ttf_path = os.path.join(file_path, "..", "resources", "simhei.ttf")
+    ttf_path = os.path.join(file_path, "..", "docs", "resources", "simhei.ttf")
     font = ImageFont.truetype(ttf_path, 14)
 
     dr.text((10, 5), info, font=font, fill="#000000")
