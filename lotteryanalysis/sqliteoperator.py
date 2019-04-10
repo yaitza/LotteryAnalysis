@@ -37,15 +37,6 @@ class sqliteoperator:
 
         self.conn.commit()
 
-    # def get_latest_date_lottery(self):
-    #     c = self.conn.cursor()
-    #     select_sql = "SELECT lottery_date FROM lottery_summary order BY lottery_date desc LIMIT 1"
-    #     cursor = c.execute(select_sql)
-    #     lottery_date = None
-    #     for row in cursor:
-    #         lottery_date = row[0]
-    #     return lottery_date
-
     def get_latest_lottery(self):
         c = self.conn.cursor()
         select_sql = "SELECT * FROM lottery_summary ORDER BY lottery_date DESC LIMIT 1"
