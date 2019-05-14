@@ -23,14 +23,17 @@ file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)))
 
 
 def winners_of_lottery():
-    latest = sql.get_latest_lottery()
-    info = "期数：{0} 开奖时间：{1} 红球号码：{2} 蓝球号码：{3}".format(latest[0], latest[1], latest[3], latest[4])
-    im = Image.new("RGB", (550, 25), (255, 255, 255))
+    latest_ten = sql.get_latest_lottery()
+    lottery_info = ""
+    for latest in latest_ten:
+        info = "期数：{0} 开奖时间：{1} 红球号码：{2} 蓝球号码：{3}".format(latest[0], latest[1], latest[3], latest[4])
+        lottery_info = lottery_info + info + "\n"
+    im = Image.new("RGB", (550, 180), (255, 255, 255))
     dr = ImageDraw.Draw(im)
     ttf_path = os.path.join(file_path, "..", "docs", "resources", "simhei.ttf")
     font = ImageFont.truetype(ttf_path, 14)
 
-    dr.text((10, 5), info, font=font, fill="#000000")
+    dr.text((10, 5), lottery_info, font=font, fill="#000000")
 
     # im.show()
     winning_path = os.path.join(file_path, "..", "docs", "image", "Winning.png")
@@ -296,10 +299,10 @@ def blue_visual():
 
 
 if __name__ == "__main__":
-    sales_money_visual()
-    difference_prize_visual()
-    blue_statistics_visual()
-    red_statistics_visual()
-    ball_sum_visual()
-    area_statistics_visual()
+    # sales_money_visual()
+    # difference_prize_visual()
+    # blue_statistics_visual()
+    # red_statistics_visual()
+    # ball_sum_visual()
+    # area_statistics_visual()
     winners_of_lottery()

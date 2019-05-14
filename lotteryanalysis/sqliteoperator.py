@@ -39,11 +39,11 @@ class sqliteoperator:
 
     def get_latest_lottery(self):
         c = self.conn.cursor()
-        select_sql = "SELECT * FROM lottery_summary ORDER BY lottery_date DESC LIMIT 1"
+        select_sql = "SELECT * FROM lottery_summary ORDER BY lottery_date DESC LIMIT 10"
         cursor = c.execute(select_sql)
         lottery = []
         for row in cursor:
-            lottery.extend(list(row))
+            lottery.append(list(row))
         return lottery
 
     def get_single_value(self, item):
