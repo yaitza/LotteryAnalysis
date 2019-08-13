@@ -21,7 +21,6 @@ class sqliteoperator:
 
     def __init__(self):
         self.db_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "docs", "resources", "lottery.db")
-        print(self.db_file)
         self.conn = sqlite3.connect(self.db_file)
 
     def insert_lottery_results(self, lottery_results):
@@ -39,7 +38,7 @@ class sqliteoperator:
 
     def get_latest_lottery(self):
         c = self.conn.cursor()
-        select_sql = "SELECT * FROM lottery_summary ORDER BY lottery_date DESC LIMIT 1"
+        select_sql = "SELECT * FROM lottery_summary ORDER BY lottery_date DESC LIMIT 10"
         cursor = c.execute(select_sql)
         lottery = []
         for row in cursor:

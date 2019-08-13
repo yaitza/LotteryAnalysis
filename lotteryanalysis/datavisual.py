@@ -16,6 +16,7 @@ from sqliteoperator import sqliteoperator
 import datahandle
 from pylab import *
 from PIL import Image, ImageFont, ImageDraw
+from obtainoriginaldata import requests_lottery
 
 sql = sqliteoperator()
 
@@ -299,6 +300,9 @@ def blue_visual():
 
 
 if __name__ == "__main__":
+    response_lottery = requests_lottery("2013-01-01", time.strftime("%Y-%m-%d", time.localtime()))
+    so = sqliteoperator()
+    so.insert_lottery_results(response_lottery)
     sales_money_visual()
     difference_prize_visual()
     blue_statistics_visual()
