@@ -206,14 +206,14 @@ def area_statistics_visual():
         pyplot.text(x, y + 3, x, ha='center', fontsize=7)
     area_path = os.path.join(file_path, "..", "docs", "image", "AreaWinningCount.png")
     pyplot.savefig(area_path.format(os.getcwd()), dpi=300)
-    # pyplot.show()
+    pyplot.show()
     pyplot.clf()
     pyplot.figure()
     area_data_pie = sorted(area_data.items(), key=lambda x: x[0], reverse=False)
     pyplot.pie([x[1] for x in area_data_pie], labels=[x[0] for x in area_data_pie])
-    area_pie_path = os.path.join(file_path, "..", "docs", "image", "RedBallsStatistics.png")
+    area_pie_path = os.path.join(file_path, "..", "docs", "image", "AreaWinningCountPie.png")
     pyplot.savefig(area_pie_path.format(os.getcwd()), dpi=300)
-    # pyplot.show()
+    pyplot.show()
 
 
 def sales_money_visual():
@@ -234,7 +234,7 @@ def sales_money_visual():
     pyplot.plot(range(0, pool_sales_money.__len__()), pool_sales_money, color="orange",
                 linewidth=1, linestyle="-", label="奖池金额")
     legend(loc='upper left')
-    sales_money_path = os.path.join(file_path, "..", "docs", "image", "RedBallsStatistics.png")
+    sales_money_path = os.path.join(file_path, "..", "docs", "image", "SalesMoney.png")
     pyplot.savefig(sales_money_path.format(os.getcwd()), dpi=300)
     # pyplot.show()
 
@@ -299,10 +299,10 @@ def blue_visual():
 
 
 if __name__ == "__main__":
-    # sales_money_visual()
-    # difference_prize_visual()
-    # blue_statistics_visual()
-    # red_statistics_visual()
-    # ball_sum_visual()
-    # area_statistics_visual()
+    sales_money_visual()
+    difference_prize_visual()
+    blue_statistics_visual()
+    red_statistics_visual()
+    ball_sum_visual()
+    area_statistics_visual()
     winners_of_lottery()

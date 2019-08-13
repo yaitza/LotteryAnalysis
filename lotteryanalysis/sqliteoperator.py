@@ -26,7 +26,7 @@ class sqliteoperator:
 
     def insert_lottery_results(self, lottery_results):
         c = self.conn.cursor()
-        latest_lottery_date = self.get_latest_lottery()[1]
+        latest_lottery_date = self.get_latest_lottery()[0][1]
         for lottery in lottery_results:
             insert_sql = "INSERT INTO lottery_summary(ID,lottery_date,week,redballs,blueballs,content,sales,poolmoney,prizegrades)" \
                          " VALUES (\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\")".format(
@@ -39,7 +39,7 @@ class sqliteoperator:
 
     def get_latest_lottery(self):
         c = self.conn.cursor()
-        select_sql = "SELECT * FROM lottery_summary ORDER BY lottery_date DESC LIMIT 10"
+        select_sql = "SELECT * FROM lottery_summary ORDER BY lottery_date DESC LIMIT 1"
         cursor = c.execute(select_sql)
         lottery = []
         for row in cursor:
